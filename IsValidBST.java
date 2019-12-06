@@ -19,12 +19,9 @@ class Solution {
     private boolean isBST(TreeNode node, int min, int max) {
           if(node == null) {
                 return true;
-            }
-            if (node.val <= min || node.val > max) {
-                return false;
-            }
+          }
             
             boolean leftTree = isBST(node.left, min, node.val);
             boolean rightTree = isBST(node.right, node.val, max);
-            return leftTree && rightTree;    }
+            return node.val > min && node.val < max && leftTree && rightTree;    }
 }
