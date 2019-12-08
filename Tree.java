@@ -24,12 +24,34 @@ class TreeNode {
         }
     }
 
-    // Pre order traversal
+    // In order traversal
+    void inOrderTraversal() {
+        if (left != null) {
+            left.inOrderTraversal();
+        }
+        System.out.println(val);
+        if (right != null) {
+            right.preOrderTraversal();
+        }
+    }
+
+    //Post order traversal
+    void postOrderTraversal() {
+        if (left != null) {
+            left.postOrderTraversal();
+        }
+        if (right != null) {
+            right.postOrderTraversal();
+        }
+        System.out.println(val);
+    }
+
+    //Pre order Traversal
     void preOrderTraversal() {
+        System.out.println(val);
         if (left != null) {
             left.preOrderTraversal();
         }
-        System.out.println(val);
         if (right != null) {
             right.preOrderTraversal();
         }
