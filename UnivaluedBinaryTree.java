@@ -18,12 +18,6 @@ class Solution {
     }
 
     boolean evaluate(TreeNode root, int val) {
-        if (root == null) {
-            return true;
-        }
-        if (root.val != val) {
-            return false;
-        }
-        return evaluate(root.left, val) && evaluate(root.right, val);
+      return (root == null) || (root.val == val && evaluate(root.left, val) && evaluate(root.right, val) );
     }
 }
