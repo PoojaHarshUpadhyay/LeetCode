@@ -30,18 +30,16 @@ class Solution {
             //Here exploring the child nodes and adding the value in List then 
             //removing it from queue and adding another node to the queue that we 
             //want to explore further
-            for(int i = 0; i < levelSize; i++) {
+            for (int i = 0; i < level; i++) {
                 TreeNode node = queue.poll();
-                levelList.add(node.val);
-                
-                if(node.left != null) {
+                list.add(node.data);
+
+                if (node.left != null) {
                     queue.add(node.left);
                 }
-                
-                if(node.right != null) {
+                if (node.right != null) {
                     queue.add(node.right);
                 }
-                
             }
             result.add(levelList);    
             
