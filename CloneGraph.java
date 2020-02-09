@@ -27,28 +27,28 @@ class Solution {
         if(node == null) {
             return null;
         }
-        Hashtable<Node, Node> map = new Hashtable<>();
+       HashMap<Node, Node> map = new HashMap<>();
         Queue<Node> queue = new LinkedList<>();
         queue.add(node);
-        map.put(node, createNode(node.val));
+        map.put(node, CreateNode(node.val));
         
-        while(!queue.isEmpty()) {
-            Node currNode = queue.remove();
-                for(Node neighbor: currNode.neighbors) {
-                    if(!map.containsKey(neighbor)) {
-                        map.put(neighbor, createNode(neighbor.val));
-                        queue.add(neighbor);
-                        }
-                    map.get(currNode).neighbors.add(map.get(neighbor));
-                    }
+        while(!queue.isEmpty()){
+            Node currentNode = queue.remove();
+            for(Node neighbour : currentNode.neighbors) {
+                if(!map.containsKey(neighbour)) {
+                    map.put(neighbour, CreateNode(neighbour.val));
+                    queue.add(neighbour);
+                }
+                map.get(currentNode).neighbors.add(map.get(neighbour));
             }
+        }
         
         return map.get(node);
+        
     }
-    
-  private  Node createNode(int val) {
-        Node newNode = new Node(val);
-        newNode.neighbors = new ArrayList<>();
-        return newNode;
+    private Node CreateNode(int val) {
+        Node newnode = new Node(val);
+        newnode.neighbors = new ArrayList<Node>();
+        return newnode;
     }
 }
