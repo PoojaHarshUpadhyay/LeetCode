@@ -39,6 +39,7 @@ class Solution {
                     map.put(neighbour, CreateNode(neighbour.val));
                     queue.add(neighbour);
                 }
+                //connecting the node from neighbour nodes
                 map.get(currentNode).neighbors.add(map.get(neighbour));
             }
         }
