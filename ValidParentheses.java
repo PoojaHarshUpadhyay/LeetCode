@@ -1,39 +1,25 @@
-class Solution {
-    public boolean isValid(String s) {
+   boolean isValid(String s) {
         HashMap<Character, Character> mappings = new HashMap<>();
         mappings.put('(', ')');
-        mappings.put('{','}');
-        mappings.put('[',']');
-        
+        mappings.put('{', '}');
+        mappings.put('[', ']');
+
         Stack<Character> stack = new Stack<>();
-        if(s.length() > 0) {
+        if (s.length() > 0) {
             char[] c = s.toCharArray();
-            int i = 0;
-            stack.push(c[i]);
-            for (i = 1; i < c.length; i++) {
-                //get the current character from string s
-                char currentChar = c[i];
-                
-                //if opening bracket as key then add in stack
-                if(!mappings.containsKey(currentChar)) {
-                    
-                    //get the latest value of stack
-                    Character latestStack = stack.isEmpty() ? '#' : stack.pop();
-                    
-                    if(!mappings.containsKey(latestStack) ||                                            !mappings.get(latestStack).equals(currentChar)) {
-                        stack.push(currentChar);
+            for (int i = 0; i < c.length; i++) {
+                if (!mappings.containsKey(c[i])) {
+                    char sc = stack.isEmpty() ? '#' : stack.pop();
+                    if (!mappings.containsKey(sc) || !mappings.get(sc).equals(c[i])) {
+                        stack.push(c[i]);
                     }
-                    
-                    
                 } else {
-                    stack.push(currentChar);
+                    stack.push(c[i]);
                 }
-                
             }
+        } else {
+            return false;
         }
-        else {
-            return true;
-        }
-       return stack.isEmpty(); 
+
+        return stack.isEmpty();
     }
-}
