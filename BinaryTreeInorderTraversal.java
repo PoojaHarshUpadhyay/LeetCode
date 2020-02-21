@@ -9,20 +9,19 @@
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> integerList = new ArrayList<>();
-        insert(root, integerList);
-        return integerList;
+        List<Integer> list = new ArrayList<Integer>();
+        insert(root, list);
+        return list;
     }
-    
-    void insert(TreeNode root, List<Integer> integerList) {
+    void insert(TreeNode root, List<Integer> list) {
+        if(root == null) {
+           return;
+        } 
         
-        if (root == null) {
-            return;
-        }
-        insert(root.left, integerList);
-        integerList.add(root.val);
-        insert(root.right, integerList);
-        
+        insert(root.left, list);
+        list.add(root.val);
+        insert(root.right, list);
         
     }
+   
 }
