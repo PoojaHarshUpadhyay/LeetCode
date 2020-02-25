@@ -13,15 +13,12 @@ class Solution {
         insert(root, list);
         return list;
     }
-    void insert(TreeNode root, List<Integer> list) {
-        if(root == null) {
+   private void insert(TreeNode root, List<Integer> list) {
+       if(root == null) {
            return;
-        } 
-        
-        insert(root.left, list);
-        list.add(root.val);
-        insert(root.right, list);
-        
-    }
-   
+       }
+       insert(root.left, list);
+       list.add(root.val);
+       insert(root.right, list);
+   }
 }
