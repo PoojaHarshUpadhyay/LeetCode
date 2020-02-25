@@ -51,6 +51,5 @@
             result.add(list);
             level++;
         }
-
         return result;
     }
