@@ -9,19 +9,20 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        if (!isBST(root, -1000, 1000)) {
-            return false;
-        } else {
-            return true;
-        }
+      return isBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
     
-    private boolean isBST(TreeNode node, int min, int max) {
-          if(node == null) {
-                return true;
-          }
-            
-            boolean leftTree = isBST(node.left, min, node.val);
-            boolean rightTree = isBST(node.right, node.val, max);
-            return node.val > min && node.val < max && leftTree && rightTree;    }
+    private boolean isBST(TreeNode root, long min, long max) {
+        if (root == null) {
+            return true;
+        }
+        boolean minVal = root.val > min;
+        boolean maxVal = root.val < max;
+        boolean leftNode = isBST(root.left, min, root.val);
+        boolean rightNode = isBST(root.right, root.val, max);
+        return minVal && maxVal && leftNode && rightNode;
+      
+    }
+    
+  
 }
