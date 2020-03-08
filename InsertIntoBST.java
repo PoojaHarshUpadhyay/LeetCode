@@ -12,24 +12,26 @@ class Solution {
         if(root == null) {
             return new TreeNode(val);
         }
-        TreeNode current = root;
-        boolean flag = true;
+       boolean flag = true;
+        TreeNode dummy = root;
         while(flag) {
-            //traverse left
-            if(val <= current.val) {
-                if(current.left != null) {
-                    current = current.left;
-                } else {
-                    current.left = new TreeNode(val);
+            if(val <= dummy.val) {
+                // traverse left 
+                if(dummy.left == null) {
+                    //do insert
+                    dummy.left = new TreeNode(val);
                     flag = false;
-                }
+                } else {
+                  dummy = dummy.left;
+                }    
             } else {
                 //traverse right
-                if(current.right != null) {
-                    current = current.right;
-                } else {
-                    current.right = new TreeNode(val);
+                if(dummy.right == null) {
+                    //do insert
+                    dummy.right = new TreeNode(val);
                     flag = false;
+                } else {
+                    dummy = dummy.right;
                 }
             }
         }
