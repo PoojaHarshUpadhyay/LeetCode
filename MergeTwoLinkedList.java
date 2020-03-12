@@ -8,29 +8,31 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        
-        //dummy node which has 0 value and points to actual l3 first node
+        if(l1 == null && l2 == null) {
+            return null;
+        }
         ListNode dummy = new ListNode(0);
-        ListNode l3 = dummy; 
-        
+        ListNode l3 = dummy;
         while(l1 != null && l2 != null) {
             if(l1.val < l2.val) {
-                l3.next = l1;
+                dummy.next  = new ListNode(l1.val);
                 l1 = l1.next;
-            } else{
-                l3.next = l2; 
+            } else {
+                dummy.next  = new ListNode(l2.val);
                 l2 = l2.next;
             }
-            l3 = l3.next;
+            dummy = dummy.next;
         }
-        
-        if(l1 != null) {
-            l3.next = l1;
+        while(l1 != null) {
+            dummy.next  = new ListNode(l1.val);
+            l1 = l1.next;
+            dummy = dummy.next;
         }
-        
-        if (l2 != null) {
-            l3.next = l2;
+        while (l2 != null) {
+            dummy.next  = new ListNode(l2.val);
+            l2 = l2.next;
+            dummy = dummy.next;
         }
-        return dummy.next;
+        return l3.next;
     }
 }
