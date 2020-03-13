@@ -1,25 +1,33 @@
-   boolean isValid(String s) {
-        HashMap<Character, Character> mappings = new HashMap<>();
-        mappings.put('(', ')');
-        mappings.put('{', '}');
-        mappings.put('[', ']');
-
+class Solution {
+    public boolean isValid(String s) {
+      if (s == "") {
+          return true;
+      }
         Stack<Character> stack = new Stack<>();
-        if (s.length() > 0) {
-            char[] c = s.toCharArray();
-            for (int i = 0; i < c.length; i++) {
-                if (!mappings.containsKey(c[i])) {
-                    char sc = stack.isEmpty() ? '#' : stack.pop();
-                    if (!mappings.containsKey(sc) || !mappings.get(sc).equals(c[i])) {
-                        stack.push(c[i]);
-                    }
-                } else {
-                    stack.push(c[i]);
-                }
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else if(!stack.isEmpty() && isValidParenthesis(stack.peek(), c)) {
+                stack.pop();
+            } else {
+                return false;
             }
-        } else {
-            return false;
         }
-
         return stack.isEmpty();
     }
+    
+    private boolean isValidParenthesis(char left, char right) {
+        boolean result = false;
+        if(left == '(' && right == ')') {
+            result = true;
+        }
+        if(left == '[' && right == ']') {
+            result = true;
+        }
+        if(left == '{' && right == '}') {
+            result = true;
+        }
+        return result;
+    }
+}
