@@ -21,6 +21,7 @@ class Solution {
         boolean leftNode = isBST(root.left, min, root.val);
         boolean rightNode = isBST(root.right, root.val, max);
         return minVal && maxVal && leftNode && rightNode;
+       
       
     }
     
