@@ -1,59 +1,80 @@
-class TreeNode {
-    TreeNode left;
-    TreeNode right;
-    int val;
+package com.company;
 
-    TreeNode(int x) {
-        val = x;
+import java.util.*;
+
+class Node {
+    Node left;
+    Node right;
+    int data;
+
+    Node(int data) {
+        this.data = data;
     }
 
-    //Insert data in tree
-    void insert(int data) {
+    //insert a data
+    void insert(int val) {
         if (data <= val) {
             if (left == null) {
-                left = new TreeNode(data);
+                left = new Node(val);
             } else {
-                left.insert(data);
+                left.insert(val);
             }
         } else {
-            if (right == null) {
-                right = new TreeNode(data);
+            if(right == null) {
+                right = new Node(val);
             } else {
-                right.insert(data);
+                right.insert(val);
             }
         }
     }
 
-    // In order traversal
-    void inOrderTraversal() {
-        if (left != null) {
-            left.inOrderTraversal();
+    //pre order traversal
+    void preorder() {
+        System.out.println(data);
+        if(left != null) {
+            left.preorder();
         }
-        System.out.println(val);
         if (right != null) {
-            right.preOrderTraversal();
+            right.preorder();
         }
     }
 
-    //Post order traversal
-    void postOrderTraversal() {
-        if (left != null) {
-            left.postOrderTraversal();
+    //in order traversal
+    void inorder() {
+        if(left != null) {
+            left.inorder();
         }
+        System.out.println(data);
         if (right != null) {
-            right.postOrderTraversal();
+            right.inorder();
         }
-        System.out.println(val);
     }
 
-    //Pre order Traversal
-    void preOrderTraversal() {
-        System.out.println(val);
-        if (left != null) {
-            left.preOrderTraversal();
+    //post order traversal
+    void postorder() {
+        if(left != null) {
+            left.postorder();
         }
-        if (right != null) {
-            right.preOrderTraversal();
+        if(right != null) {
+            right.postorder();
         }
+        System.out.println(data);
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Node node = new Node(6);
+        node.insert(2);
+        node.insert(7);
+        System.out.println("Pre order traversal");
+        node.preorder();
+
+        System.out.println("In order traversal");
+        node.inorder();
+
+        System.out.println("Post order traversal");
+        node.postorder();
     }
 }
