@@ -1,44 +1,47 @@
-package com.company;
+import java.util.*;
 
-class Node {
-    int data;
-    Node next;
-
-    Node(int data) {
-        this.data = data;
-    }
-}
-public class Main {
-
+public class Hello {
     public static void main(String[] args) {
-        Main obj = new Main();
+        Hello obj = new Hello();
+        obj.insert(1);
         obj.insert(2);
         obj.insert(3);
-        obj.insert(5);
         obj.traverse();
     }
 
-    Node head;
+    ListNode head;
 
-    public void insert(int num) {
-        Node node = new Node(num);
-        if (head == null) {
-            head = node;
-        } else {
-            Node n = head;
-            while (n.next != null) {
-                n = n.next;
-            }
-            n.next = node;
-        }
+    void insert(int val) {
+      ListNode node = new ListNode(val);
+      if(head == null) {
+          head = node;
+      } else {
+          ListNode n = head;
+          while (n.next != null) {
+              n = n.next;
+          }
+          n.next = node;
+      }
     }
 
-    public void traverse() {
-        Node n = head;
+    void traverse() {
+        ListNode n = head;
         while (n.next != null) {
-            System.out.println(n.data);
+            System.out.println(n.val);
             n = n.next;
         }
-        System.out.println(n.data);
+        System.out.println(n.val);
     }
+}
+
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+        val = x;
+    }
+
+
 }
