@@ -1,39 +1,47 @@
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.*;
+
 class Solution {
     public boolean isAnagram(String s, String t) {
-          if ((s == "") && ( t == "")) {
-            return true;
-        }
-        if (( s == "") || ( t == "")) {
-            return false;
-        }
-        char[] sarr = s.toCharArray();
-        char[] tarr = t.toCharArray();
-        HashMap<Character, Integer> hashMapOne = new HashMap<>();
-        for (int i = 0; i < sarr.length; i++) {
-            int count = 1;
-            if (!hashMapOne.containsKey(sarr[i])) {
-                hashMapOne.put(sarr[i], count);
+       if(s.length() == 0 || t.length() == 0) {
+           return false;
+       }
+       if(s == t) {
+           return true;
+       }
+        
+        HashMap<Character, Integer> m1 = new HashMap<>();
+        HashMap<Character, Integer> m2 = new HashMap<>();
+        
+        for(int i= 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(m1.containsKey(c)) {
+                int count = m1.get(c);
+                count++;
+                m1.put(c, count);
             } else {
-                int alreadyCount = hashMapOne.get(sarr[i]);
-                alreadyCount++;
-                hashMapOne.replace(sarr[i], alreadyCount);
+                m1.put(c, 1);
             }
         }
-        HashMap<Character, Integer> hashMapTwo = new HashMap<>();
-        for (int i = 0; i < tarr.length; i++) {
-            int count_two = 1;
-            if (!hashMapTwo.containsKey(tarr[i])) {
-                hashMapTwo.put(tarr[i], count_two);
+        
+        for(int i = 0; i < t.length(); i++) {
+            char c = t.charAt(i);
+            if(m2.containsKey(c)) {
+                int count = m2.get(c);
+                count++;
+                m2.put(c, count);
             } else {
-                int alreadyCount = hashMapTwo.get(tarr[i]);
-                alreadyCount++;
-                hashMapTwo.replace(tarr[i], alreadyCount);
+                m2.put(c, 1);
             }
         }
-        if (hashMapOne.equals(hashMapTwo)) {
+        
+        if(m1.equals(m2)) {
             return true;
         } else {
             return false;
         }
+        
+        
     }
 }
