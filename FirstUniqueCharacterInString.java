@@ -1,12 +1,27 @@
 class Solution {
     public int firstUniqChar(String s) {
-          for(int i = 0; i < s.length(); i++) {
-            int lastIndex = s.lastIndexOf(s.charAt(i));
-            int currentIndex = s.indexOf(s.charAt(i));
-            if(lastIndex == currentIndex){
-                return i;
+        HashMap<Character, Integer> map = new HashMap<>();
+        int res = -1;
+        
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(map.containsKey(c)) {
+                int count = map.get(c);
+                count++;
+                map.put(c, count);
+            } else  {
+                map.put(c, 1);
             }
         }
-        return -1;
+        
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(map.get(c) == 1) {
+                res = i;
+                break;
+            }
+        }
+        
+        return res;
     }
 }
