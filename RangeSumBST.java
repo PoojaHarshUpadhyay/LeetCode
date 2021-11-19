@@ -10,14 +10,22 @@
 class Solution {
     int sum = 0; 
     public int rangeSumBST(TreeNode root, int L, int R) {
-        if(root == null) {
-            return 0;
+       dfs(root, L, R);
+       return sum;
+    }
+    
+    private void dfs(TreeNode node, int L, int R) {
+        if(node == null) {
+            return;
         }
-        if(root.val >= L && root.val <= R) {
-            sum += root.val;
+        if(node.val <= R && node.val >= L) {
+            sum += node.val;
         }
-        rangeSumBST(root.left, L, R);
-        rangeSumBST(root.right, L, R);
-        return sum;
+        if(node.left != null) {
+            dfs(node.left, L, R);
+        }
+        if(node.right != null) {
+            dfs(node.right, L, R);
+        }
     }
 }
