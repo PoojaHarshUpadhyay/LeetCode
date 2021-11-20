@@ -19,24 +19,21 @@ class Solution {
         if(root == null) {
             return 0;
         }
-        calculate(root);
+        cal(root);
         return res;
     }
     
-    private void calculate(TreeNode node) {
-       
+    void cal(TreeNode node) {
         if(node == null) {
             return;
         }
-       
-        //if leaf
-        if(node.left != null && node.left.left == null 
-           && node.left.right == null) {
+        if(node != null && node.left != null 
+           && node.left.left == null && node.left.right == null) {
             res += node.left.val;
         }
-        
-        calculate(node.left);
-        calculate(node.right);
-        
+        cal(node.left);
+        cal(node.right);
     }
+    
+  
 }
